@@ -1,0 +1,27 @@
+t=int(input())
+for _ in range(t):
+    n,q,k=map(int,input().split())
+    a=list(map(int, input().split()))
+
+    ans=[]
+    temp=0
+    for i in range(n):
+        if a[i]<=k:
+            temp+=1
+            if i==n-1:
+                ans.append(temp)  
+        else:
+            ans.append(temp)
+            temp=0
+  
+    fi=0
+    for i in ans:
+        if i>=q:
+            while i>=q:
+                fi+=i-q+1
+                i-=1
+    print(fi)            
+
+
+    
+    
