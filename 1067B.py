@@ -7,15 +7,19 @@ for _ in range(t):
         x[i]=x.get(i,0)+1
 
     ans=0
+    s=0
     for k,v in x.items():
         if v==1:
             ans+=1
         elif v%2==0 :
-            if a.count(k)!=n:
-                ans+=2
+            if v%4==0:
+                s+=1
             else:
-                if n%2!=0:
-                    ans+=2
+                ans+=2
         else:
             ans+=1
+    
+    if s%2!=0 and not ans:
+        ans-=2
+    ans+=2*s
     print(ans)

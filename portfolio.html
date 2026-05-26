@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harikaran | Portfolio</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#6ECFF5;
+  --secondary:#58A6FF;
+  --bg:#0B0F19;
+  --glass:rgba(255,255,255,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
+body{background:var(--bg);color:white;overflow-x:hidden;}
+
+/* BACKGROUND ANIMATION */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(120deg,#0B0F19,#0A1424,#000);
+  background-size:300% 300%;
+  animation:shift 12s infinite alternate ease-in-out;
+}
+@keyframes shift{0%{filter:hue-rotate(0);}100%{filter:hue-rotate(60deg);}}
+
+/* NAVBAR */
+nav{
+  position:sticky;top:0;z-index:999;
+  padding:20px 10%;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(12px);
+}
+nav h1{color:var(--primary);font-size:26px;font-weight:700;}
+nav ul{display:flex;gap:28px;list-style:none;}
+nav a{color:white;text-decoration:none;font-weight:500;transition:.3s;border-bottom:2px solid transparent;padding-bottom:5px;}
+nav a:hover,nav a.active{color:var(--primary);border-bottom-color:var(--primary);}
+.menu{display:none;font-size:32px;cursor:pointer;}
+@media(max-width:850px){
+  nav ul{position:absolute;top:70px;left:0;width:100%;display:none;flex-direction:column;background:#000;padding:20px;}
+  nav ul.show{display:flex;}
+  .menu{display:block;}
+}
+
+/* HERO SECTION */
+#home{
+  height:100vh;padding:0 10%;display:flex;align-items:center;position:relative;
+  background:url('https://picsum.photos/1920/1080?random=10') center/cover fixed;
+}
+#home::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.6);}
+.hero-content{position:relative;z-index:2;max-width:650px;}
+
+/* TYPING */
+#typing{
+  font-size:48px;font-weight:700;color:var(--primary);
+  border-right:3px solid var(--primary);animation:blink .7s infinite;
+}
+@keyframes blink{50%{border-color:transparent;}}
+.hero-content p{margin:20px 0;font-size:18px;color:#ccc;line-height:1.7;}
+.btn{
+  padding:14px 26px;background:linear-gradient(135deg,var(--primary),var(--secondary));
+  border-radius:10px;font-weight:600;color:black;display:inline-block;transition:.3s;
+}
+.btn:hover{transform:scale(1.07);box-shadow:0 0 25px var(--secondary);}
+
+/* SECTIONS */
+section{padding:100px 10%;}
+.section-title{
+  text-align:center;font-size:36px;margin-bottom:50px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;color:transparent;
+}
+
+/* ABOUT */
+.about-box{
+  background:var(--glass);backdrop-filter:blur(15px);
+  padding:40px;border-radius:15px;border:1px solid rgba(255,255,255,.15);
+  line-height:1.8;
+}
+.skills-grid{
+  margin-top:30px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:18px;
+}
+.skill-card{
+  background:rgba(255,255,255,.06);
+  padding:18px;text-align:center;border-radius:12px;transition:.3s;
+}
+.skill-card:hover{border:1px solid var(--primary);transform:scale(1.08);}
+
+/* PROJECTS */
+.grid{
+  display:grid;gap:35px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+}
+.project-card{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:14px;overflow:hidden;cursor:pointer;transition:.4s;
+}
+.project-card img{
+  width:100%;height:220px;object-fit:cover;transition:.4s;
+}
+.project-card:hover img{transform:scale(1.12);}
+.project-card:hover{
+  transform:scale(1.04);box-shadow:0 0 40px rgba(88,166,255,.35);
+}
+.project-card-content{padding:22px;}
+.project-card-content h3{color:var(--primary);margin-bottom:10px;}
+
+/* CONTACT */
+form{max-width:600px;margin:auto;display:flex;flex-direction:column;gap:20px;}
+input,textarea{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
+  padding:16px;border-radius:10px;color:white;
+}
+input:focus,textarea:focus{
+  border-color:var(--primary);box-shadow:0 0 12px var(--primary);outline:none;
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(70px);transition:1s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <h1>Harikaran</h1>
+  <ul id="navLinks">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="menu" onclick="toggleMenu()">☰</div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-content">
+    <div id="typing"></div>
+    <p>B.Tech IT @ SSN College | CGPA: 8.47 | Codeforces Max Rating: 1229 (Pupil)<br>
+       Developer skilled in Flask, Python, MySQL & Real-world Applications.</p>
+    <a href="#projects" class="btn">🚀 View My Projects</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+<h2 class="section-title">About Me</h2>
+<div class="about-box">
+  I’m a Web Developer & Competitive Programmer passionate about building meaningful,
+  scalable, performance-driven software and AI based systems.
+  <br><br><b>💻 Technical Skills</b>
+  <div class="skills-grid">
+    <div class="skill-card">Python, Java, C++</div>
+    <div class="skill-card">Flask, MySQL, MongoDB</div>
+    <div class="skill-card">CNN, LSTM, TensorFlow</div>
+    <div class="skill-card">OS, CN, DBMS, DSA</div>
+  </div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+<h2 class="section-title">Featured Projects</h2>
+<div class="grid">
+
+  <div class="project-card">
+    <img src="https://picsum.photos/seed/maps/600/400" alt="">
+    <div class="project-card-content">
+      <h3>🚑 Ambulance Route Optimization</h3>
+      <p>Real-time re-routing & ETA prediction using Flask + TomTom Traffic API.</p>
+    </div>
+  </div>
+  <a href="https://github.com/Harikaran14">
+
+      <div class="project-card">
+    <img src="https://picsum.photos/seed/ai-tech/600/400" alt="">
+    <div class="project-card-content">
+      <h3>🧠 Sleep Stage Classification AI</h3>
+      <p>CNN-LSTM model that classifies EEG/EOG/EMG signals with preprocessing.</p>
+    </div>
+  </div>
+
+  </a>
+
+
+  <div class="project-card">
+    <img src="https://picsum.photos/seed/store/600/400" alt="">
+    <div class="project-card-content">
+      <h3>🛍️ AlgoMart – E-Commerce</h3>
+      <p>Flask + MySQL + BST Search functionality + PL/SQL triggers.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+<h2 class="section-title">Contact Me</h2>
+<form>
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <textarea rows="5" placeholder="Your Message"></textarea>
+  <button class="btn">Send Message ✉️</button>
+</form>
+</section>
+
+<footer style="text-align:center;padding:40px;color:#bbb;">
+  © 2025 Harikaran • Designed & Built by Me
+</footer>
+
+<!-- JS -->
+<script>
+// typing effect
+const text = "Hi, I'm Harikaran 👋";
+let i=0;
+function type(){document.getElementById("typing").innerText=text.slice(0,i);i++;if(i<=text.length) setTimeout(type,90);}
+type();
+
+// scroll reveal
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});});
+document.querySelectorAll(".reveal").forEach(r=>obs.observe(r));
+
+// mobile menu
+function toggleMenu(){document.getElementById("navLinks").classList.toggle("show");}
+</script>
+
+</body>
+</html>
+
