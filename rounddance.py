@@ -8,7 +8,6 @@ for _ in range(t):
     for i in range(n):
         adj[i].add(a[i]-1)
         adj[a[i]-1].add(i)
-    print(adj)
     cycles=0
     disjoints=0
     for i in range(n):
