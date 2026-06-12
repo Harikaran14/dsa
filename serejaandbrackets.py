@@ -10,7 +10,7 @@ class Snode:
 
 class SegmentTree:
     def __init__(self,n):
-        self.x=[Snode() for i in range(*(4*n))]
+        self.x=[Snode() for i in range((4*n))]
     
     def build(self,arr,ind,left,right):
         if left==right:
@@ -61,3 +61,77 @@ for i in range(n):
     r-=1
     ans.append(str(s.query(0,0,x-1,l,r).complete*2))
 sys.stdout.write("\n".join(ans))
+
+'''
+import sys
+input=sys.stdin.readline
+
+class Snode:
+    def __init__(self):
+        self.open=0
+        self.close=0
+        self.complete=0
+        self.left=None
+        self.right=None
+
+
+class SegmentTree:
+    def __init__(self):
+        pass
+    
+    def build(self,arr,left,right):
+        if left==right:
+            s=Snode()
+            if arr[left]=="(":
+                s.open+=1
+            else:
+                s.close+=1
+            return s
+        else:
+            root=Snode()
+            mid=(left+right)//2
+            l=self.build(arr,left,mid)
+            root.left=l
+            r=self.build(arr,mid+1,right)
+            root.right=r
+            v=min(l.open,r.close)
+            root.complete= l.complete+r.complete + v
+            root.open= l.open +r.open - v
+            root.close=l.close+r.close-v
+            return root
+    
+            
+    def query(self,root,left,right,l,r):
+        if l<=left<=right<=r:
+            return root
+        elif l>right or r<left:
+            return Snode()
+        else:
+            mid=(left+right)//2
+            ll=self.query(root.left,left,mid,l,r)
+            rr=self.query(root.right,mid+1,right,l,r)
+            root=Snode()
+            v=min(ll.open,rr.close)
+            root.complete= ll.complete+rr.complete + v
+            root.open= ll.open +rr.open - v
+            root.close=ll.close+rr.close-v
+            return root
+    
+
+
+        
+s=SegmentTree()
+inp=input().strip()
+n=int(input())
+x=len(inp)
+v=s.build(inp,0,x-1)
+ans=[]
+for i in range(n):
+    l,r= map(int,input().split())
+    l-=1
+    r-=1
+    ans.append(str(s.query(v,0,x-1,l,r).complete*2))
+sys.stdout.write("\n".join(ans))
+
+
+'''

@@ -22,12 +22,13 @@ class Fenwick:
             # x is new position
             
             ans=0
-            temp=self.n
-
+            temp=1<<(self.n.bit_length()-1)
             while temp:
-                if self.x[temp]<val:
+                if ans+temp<=self.n and self.x[ans+temp]<val:
+                    
+                    val-=self.x[ans+temp]
                     ans+=temp
-                temp-=temp&-temp
+                temp>>=1
             ans+=1
             val=ans
             while val<=self.n:
@@ -50,14 +51,14 @@ for i in a:
 for i in q:
     f.update(i)
 ans=0
-l=1
-r=n
-while l<=r:
-    mid=(l+r)//2
-    if f.query(mid)>=1:
-        ans=mid
-        r=mid-1
-    else:
-        l=mid+1
+temp=1<<(n.bit_length()-1)
+while temp:
+    if ans+temp<=n and f.x[ans+temp]<val:
+        
+        val-=f.x[ans+temp]
+        ans+=temp
+    temp>>=1
+if ans!=0:
+    ans+=1
 print(ans)
 
